@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+  },
+  "include": [
+    "./src/server/**/*.ts",
+    "./src/shared/**/*.ts",
+    "./@types/**/*.d.ts",
+    "./next.config.js"
+  ]
+}

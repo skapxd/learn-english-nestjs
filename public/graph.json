@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    {
+      "name": "AppController#handleOrderCreatedEvent",
+      "type": "subscribe",
+      "channel": "abc",
+      "message": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "573000000000"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "Hello world"
+          }
+        },
+        "required": [
+          "phone",
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "AppController#sendMessage",
+      "type": "publish",
+      "channel": "abc",
+      "message": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "default": "573000000000"
+          },
+          "message": {
+            "type": "string",
+            "default": "Hello world"
+          }
+        },
+        "required": [
+          "phone",
+          "message"
+        ]
+      }
+    }
+  ],
+  "edges": []
+}

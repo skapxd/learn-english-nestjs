@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "AppController_sendMessage",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessageDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendMessageDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-all": {
+      "get": {
+        "operationId": "AppController_getAllMessages",
+        "parameters": [
+          {
+            "name": "phone",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "maxLength": 255,
+              "default": "573000000000",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "NestJS example",
+    "description": "The NestJS API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "SendMessageDTO": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "573000000000"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "Hello world"
+          }
+        },
+        "required": [
+          "phone",
+          "message"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "asyncapi": "2.5.0",
+  "info": {
+    "title": "Feline",
+    "description": "Feline server description here",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": {
+    "feline-ws": {
+      "url": "http://localhost:3000",
+      "protocol": "http"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "user-password": {
+        "type": "userPassword"
+      }
+    },
+    "schemas": {
+      "MessageSendedEvent": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "default": "573000000000"
+          },
+          "message": {
+            "type": "string",
+            "default": "Hello world"
+          }
+        },
+        "required": [
+          "phone",
+          "message"
+        ]
+      },
+      "SendMessageDTO": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "573000000000"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 255,
+            "default": "Hello world"
+          }
+        },
+        "required": [
+          "phone",
+          "message"
+        ]
+      }
+    }
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "abc": {
+      "subscribe": {
+        "message": {
+          "payload": {
+            "$ref": "#/components/schemas/SendMessageDTO"
+          },
+          "name": "AppController#handleOrderCreatedEvent"
+        }
+      },
+      "publish": {
+        "message": {
+          "payload": {
+            "$ref": "#/components/schemas/MessageSendedEvent"
+          },
+          "name": "AppController#sendMessage"
+        }
+      }
+    }
+  }
+}
